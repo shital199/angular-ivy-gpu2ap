@@ -1,0 +1,86 @@
+<app-navigation-bar></app-navigation-bar>
+<h1 align="center">Create Student</h1>
+<div class="col-md-4 m-5 pb-5">
+  <form [formGroup]="createCustomerForm" (ngSubmit)="createCustomer()">
+    <div class="form-group">
+      <label>Student Name : </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter Student name"
+      />
+      <span
+        class="warning"
+        *ngIf="createCustomerForm.controls['name'].errors?.required"
+      >
+        *Student name is required
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Student Address : </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="address"
+        placeholder="Enter Student address"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Student Phone : </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="phone"
+        placeholder="Enter Student phone"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Student Age : </label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="age"
+        placeholder="Enter Student age"
+      />
+      <span
+        class="warning"
+        *ngIf="
+          createCustomerForm.controls['age'].errors?.max ||
+          createCustomerForm.controls['age'].errors?.min ||
+          createCustomerForm.controls['age'].errors?.patters
+        "
+      >
+        *Invalid age
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Student email : </label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter Student email"
+      />
+      <span
+        class="warning"
+        *ngIf="createCustomerForm.controls['email'].errors?.email"
+      >
+        *Please enter a valid email
+      </span>
+    </div>
+    <button type="reset" class="btn btn-warning mr-1">Reset</button>
+    <button
+      type="submit"
+      [disabled]="!createCustomerForm.valid"
+      class="btn btn-primary"
+    >
+      Insert Customer
+    </button>
+  </form>
+</div>
+
+{{ createCustomerForm.value | json }}
